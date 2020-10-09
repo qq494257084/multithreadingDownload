@@ -26,6 +26,8 @@ public class UiCreator extends JFrame {
 
     public static volatile AtomicInteger oldHeight = new AtomicInteger(600);
 
+    private static Integer retryCount = 99;
+
     private volatile boolean isPause = true;
 
     private final String title;
@@ -98,16 +100,14 @@ public class UiCreator extends JFrame {
     private void updateProgress(JPanel jPanel, int count) {
         jPanel.removeAll();
         progressBarList.clear();
-        Random random = new Random();
         for (int i = 1; i <= count; i++) {
             JPanel jPanel1 = new JPanel(new FlowLayout());
             jPanel1.setBounds(0, 0, 670, 20);
             JLabel jLabel = new JLabel(String.valueOf(i));
             JProgressBar jProgressBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, UiCreator.MAXVALUE);
-            jProgressBar.setValue(random.nextInt(UiCreator.MAXVALUE));
             jProgressBar.setPreferredSize(new Dimension(600, 20));
-            jProgressBar.setToolTipText(i + "sdfs");
-            jProgressBar.setString("sdfsdafsafwqefw");
+            jProgressBar.setToolTipText("等待下载");
+            jProgressBar.setString("等待下载");
             jProgressBar.setStringPainted(true);
             jPanel1.add(jLabel);
             jPanel1.add(jProgressBar);
@@ -173,7 +173,8 @@ public class UiCreator extends JFrame {
         JLabel jLabel = new JLabel("下载地址：");
         jLabel.setBounds(15, 14, 65, 20);
         jLabel.setForeground(Color.BLACK);
-        this.urlTextArea = new JTextArea("http://211.136.65.177/cache/dl.pddpic.com/android_dev/2020-09-02/6c458a9769a4a5b77396e955360f3ecb.apk?ich_args2=114-03105312042929_bcd898e3b6418720aee9b9eae07d2087_10001002_9c896d25d6c3f0d79633518939a83798_703b2de7a654aa9556ce2faae2c28052");
+//        this.urlTextArea = new JTextArea("http://downmini.kugou.com/web/kugou9144.exe");
+        this.urlTextArea = new JTextArea("http://iso.mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive.iso");
         urlTextArea.addFocusListener(new UrlInputListener(urlTextArea));
         urlTextArea.setForeground(Color.GRAY);
         urlTextArea.setBackground(new Color(167, 163, 163, 255));
@@ -219,7 +220,7 @@ public class UiCreator extends JFrame {
         this.count = count;
         if (isPause) {
             updateProgress(progressJPanel, count);
-            this.repaint();
+            progressJPanel.updateUI();
         }
     }
 
@@ -229,6 +230,14 @@ public class UiCreator extends JFrame {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public static Integer getRetryCount() {
+        return retryCount;
+    }
+
+    public static void setRetryCount(Integer retryCount) {
+        UiCreator.retryCount = retryCount;
     }
 
     public List<JProgressBar> getProgressBarList() {

@@ -14,17 +14,9 @@ import java.util.List;
 public class Starter {
 
     public static void main(String[] args) {
-        /*UiCreator uiCreator = new UiCreator("多线程下载");
+        UiCreator uiCreator = new UiCreator("多线程下载");
+        UiCreator.setRetryCount(99);
         uiCreator.setVisible(true);
-        List<String> list = new LinkedList<>();*/
-//        trun(100);
-        System.out.println(-2147483648-1);
-    }
-
-    public static int trun(int n) {
-        int i = 1 / n;
-        System.out.println(n);
-        return trun(n - 1);
     }
 
 }
