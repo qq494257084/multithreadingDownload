@@ -89,14 +89,14 @@ public class StartListener implements MouseListener {
                         }
                     }
                     if ("file.tmp".equals(fileName)) {
-                        String substring = urlText.substring(urlText.lastIndexOf("/"));
+                        String substring = urlText.substring(urlText.lastIndexOf("/")+1);
                         if (substring.contains("?"))
                             substring = substring.split("\\?")[0];
                         Matcher matcher = Pattern.compile(".+\\.[\\w]+").matcher(substring);
                         if (matcher.find())
                             fileName = matcher.group();
                     }
-                    if (fileName.startsWith("%"))
+                    if (fileName.contains("%"))
                         fileName = URLDecoder.decode(fileName, "UTF-8");
                     tempHttpURLConnection.disconnect();
                     int size;

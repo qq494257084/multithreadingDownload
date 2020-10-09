@@ -173,8 +173,7 @@ public class UiCreator extends JFrame {
         JLabel jLabel = new JLabel("下载地址：");
         jLabel.setBounds(15, 14, 65, 20);
         jLabel.setForeground(Color.BLACK);
-//        this.urlTextArea = new JTextArea("http://downmini.kugou.com/web/kugou9144.exe");
-        this.urlTextArea = new JTextArea("http://iso.mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive.iso");
+        this.urlTextArea = new JTextArea("http://downmini.kugou.com/web/kugou9144.exe");
         urlTextArea.addFocusListener(new UrlInputListener(urlTextArea));
         urlTextArea.setForeground(Color.GRAY);
         urlTextArea.setBackground(new Color(167, 163, 163, 255));
